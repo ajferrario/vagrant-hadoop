@@ -10,6 +10,10 @@ sudo apt-get install virtualbox
 sudo apt-get install vagrant
 - Install dkms to make sure virtualbox host kernels are ok if we upgrade linux
 sudo apt-get install virtualbox-dkms
+- Create Vagrant folder and initialize project
+mkdir vagrant_project
+cd vagrant_project
+vagrant init
 - install git
 sudo apt install git
 - clone the repo
@@ -17,3 +21,4 @@ git clone https://github.com/ajferrario/vagrant-hadoop.git
 - replace Vagrantfile with repo
 cp -f Vagrantfile /vagrant-hadoop/VagrantFile
 - clean up repository
+
