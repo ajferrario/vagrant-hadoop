@@ -57,3 +57,5 @@ git clone https://github.com/ajferrario/vagrant-hadoop.git
 cp -f vagrant-hadoop/Vagrantfile Vagrantfile
 rm -r -f vagrant-hadoop
 vagrant up
+
+```
