@@ -20,9 +20,11 @@
 `vagrant box add ubuntu/xenial64`
 - Create Vagrant folder and initialize project
 
-`mkdir vagrant_project
+```
+mkdir vagrant_project
 cd vagrant_project
-vagrant init`
+vagrant init
+```
 - install git
 
 `sudo apt install git`
