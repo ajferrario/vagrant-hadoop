@@ -11,7 +11,10 @@
 `sudo apt-get install virtualbox`
 - Install vagrant
 
-`sudo apt-get install vagrant`
+```
+wget https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb
+sudo dpkg -i vagrant_1.9.1_x86_64.deb
+```
 - Install dkms to make sure virtualbox host kernels are ok if we upgrade linux
 
 `sudo apt-get install virtualbox-dkms`
