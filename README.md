@@ -49,7 +49,8 @@ Full script
 sudo apt-install pip
 pip install ansible
 sudo apt-get install virtualbox
-sudo apt-get install vagrant
+wget https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb
+sudo dpkg -i vagrant_1.9.1_x86_64.deb
 sudo apt-get install virtualbox-dkms
 vagrant box add ubuntu/xenial64
 mkdir vagrant_project
