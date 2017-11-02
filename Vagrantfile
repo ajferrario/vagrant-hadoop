@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
     #  ansible.playbook = "playbook.yml"
     #end
     primary_name.vm.box = "ubuntu/xenial64"
-    primary_name.vm.network "private_network", ip: "64.64.64.0"
+    primary_name.vm.network "forwarded_port", guest: 80, host: 8081
   end
   
   config.vm.define "data_1" do |data_1|
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     #  ansible.playbook = "playbook.yml"
     #end
     data_1.vm.box = "ubuntu/xenial64"
-    data_1.vm.network "private_network", ip: "64.64.64.10"
+    data_1.vm.network "forwarded_port", guest: 80, host: 8082
   end
   
   config.vm.define "data_2" do |data_2|
@@ -36,6 +36,6 @@ Vagrant.configure("2") do |config|
     #  ansible.playbook = "playbook.yml"
     #end
     data_2.vm.box = "ubuntu/xenial64"
-    data_2.vm.network "private_network", ip: "64.64.64.11"
+    data_2.vm.network "forwarded_port", guest: 80, host: 8083
   end
 end
