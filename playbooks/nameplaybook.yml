@@ -24,7 +24,8 @@
         state: directory
         recurse: yes
     - name: make sure we have the latest vagrant hadoop repo
-      repo: 'https://github.com/ajferrario/vagrant-hadoop.git'
+      git:
+        repo: 'https://github.com/ajferrario/vagrant-hadoop.git'
         dest: /home/ubuntu
     - name: update core-site.xml
       copy:
