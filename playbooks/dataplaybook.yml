@@ -3,8 +3,13 @@
   become: yes
   tasks:
     - name: Make sure Java is installed
-      apt: 
+      apt:
         pkg: default-jre
+        state: installed
+        update_cache: yes
+    - name: Make sure git is installed
+      apt:
+        pkg: git
         state: installed
         update_cache: yes
     - name: Download and unpack Hadoop
@@ -24,3 +29,22 @@
         state: directory
         mode: 0775
         recurse: yes
+    - name: make sure we have the latest vagrant hadoop repo
+      repo: 'https://github.com/ajferrario/vagrant-hadoop.git'
+        dest: /home/ubuntu
+    - name: update core-site.xml
+      copy:
+        src: /home/ubuntu/vagrant-hadoop/config/core-site.xml
+        dest: /usr/local/hadoop/etc/hadoop/core-site.xml
+    - name: update hdfs-site.xml
+      copy:
+        src: /home/ubuntu/vagrant-hadoop/config/hdfs-site.xml
+        dest: /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+    - name: update mapred-site.xml
+      copy:
+        src: /home/ubuntu/vagrant-hadoop/config/mapred-site.xml
+        dest: /usr/local/hadoop/etc/hadoop/mapred-site.xml
+    - name: update yarn-site.xml
+      copy:
+        src: /home/ubuntu/vagrant-hadoop/config/yarn-site.xml
+        dest: /usr/local/hadoop/etc/hadoop/yarn-site.xml
