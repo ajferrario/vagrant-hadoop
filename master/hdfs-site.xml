@@ -1,0 +1,10 @@
+<configuration>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:/home/ubuntu/hadoop_store/hdfs/namenode2
+  </property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:/home/ubuntu/hadoop_store/hdfs/datanode2
+  <property>
+  </property>
+</configuration>
