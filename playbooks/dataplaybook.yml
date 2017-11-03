@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Make sure Java is installed
+      apt: 
+        pkg: default-jre
+        state: installed
+        update_cache: yes
+    - name: Download and unpack Hadoop
+      unarchive:
+        src: http://www.trieuvan.com/apache/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz
+        dest: /usr/local/hadoop
+        remote_src: yes
+    - name: make sure hadoop java home is set
+      lineinfile:
+        path: /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+        create: yes
+        state: present
+        line: "export JAVA_HOME=$(readlink -f /usr/bin/java | sed \"s:bin/java::\")"
+    - name: make sure data node folder exists
+      file:
+        path: /home/ubuntu/hadoop_store/hdfs/datanode2
+        state: directory
+        mode: 0775
+        recurse: yes
