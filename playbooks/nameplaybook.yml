@@ -12,10 +12,15 @@
         src: http://www.trieuvan.com/apache/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz
         dest: /usr/local/hadoop
         remote_src: yes
-    - name: make sure hadoop's java home is set
+    - name: make sure hadoop java home is set
       lineinfile:
         path: /usr/local/hadoop/etc/hadoop/hadoop-env.sh
         create: yes
         state: present
         line: "export JAVA_HOME=$(readlink -f /usr/bin/java | sed \"s:bin/java::\")"
+    - name: make sure name node folder exists
+      file:
+        path: /home/ubuntu/hadoop_store/hdfs/namenode2
+        state: directory
+        recurse: yes
 ...
