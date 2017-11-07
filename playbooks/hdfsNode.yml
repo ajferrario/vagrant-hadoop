@@ -1,0 +1,60 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Add software-properties-common to support the add-apt-library
+      apt:
+        pkg: software-properties-common
+        state: installed
+        update_cache: yes
+    - name: Add python-software-properties to support the JAVA library
+      apt:
+        pkg: python-software-properties
+        state: installed
+        update_cache: yes
+    - name: Add java repository
+      apt_repository:
+        repo: ppa:openjdk-r/ppa
+        update_cache: yes
+    - name: Make sure Java is installed
+      apt:
+        pkg: openjdk-8-jdk
+        state: installed
+        update_cache: yes
+    - name: Make sure git is installed
+      apt:
+        pkg: git
+        state: installed
+        update_cache: yes
+    - name: make sure hadoop directory exists
+      file:
+        path: /usr/local/hadoop
+        state: directory
+        mode: 0775
+        recurse: yes
+    - name: Download and unpack Hadoop
+      unarchive:
+        src: http://www.trieuvan.com/apache/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz
+        dest: /usr/local/hadoop
+        remote_src: yes
+    - name: make sure hadoop java home is set
+      lineinfile:
+        path: /usr/local/hadoop/hadoop-2.8.2/etc/hadoop/hadoop-env.sh
+        create: yes
+        state: present
+        line: "export JAVA_HOME=$(readlink -f /usr/bin/java | sed \"s:bin/java::\")"
+    - name: make sure we have the latest vagrant hadoop repo
+      git:
+        repo: 'https://github.com/ajferrario/vagrant-hadoop.git'
+        dest: /home/ubuntu/vagrant-hadoop
+    - name: update core-site.xml
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/core-site.xml /usr/local/hadoop/hadoop-2.8.2/etc/hadoop/core-site.xml
+    - name: update hdfs-site.xml
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/hdfs-site.xml /usr/local/hadoop/hadoop-2.8.2/etc/hadoop/hdfs-site.xml
+    - name: update mapred-site.xml
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/mapred-site.xml /usr/local/hadoop/hadoop-2.8.2/etc/hadoop/mapred-site.xml
+    - name: update yarn-site.xml
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/yarn-site.xml /usr/local/hadoop/hadoop-2.8.2/etc/hadoop/yarn-site.xml
+    - name: update slaves
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/slaves /usr/local/hadoop/hadoop-2.8.2/etc/hadoop/slaves
+...

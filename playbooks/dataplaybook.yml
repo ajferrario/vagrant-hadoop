@@ -2,50 +2,10 @@
 - hosts: all
   become: yes
   tasks:
-    - name: Make sure Java is installed
-      apt:
-        pkg: default-jre
-        state: installed
-        update_cache: yes
-    - name: Make sure git is installed
-      apt:
-        pkg: git
-        state: installed
-        update_cache: yes
-    - name: Download and unpack Hadoop
-      unarchive:
-        src: http://www.trieuvan.com/apache/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz
-        dest: /usr/local/hadoop
-        remote_src: yes
-    - name: make sure hadoop java home is set
-      lineinfile:
-        path: /usr/local/hadoop/etc/hadoop/hadoop-env.sh
-        create: yes
-        state: present
-        line: "export JAVA_HOME=$(readlink -f /usr/bin/java | sed \"s:bin/java::\")"
-    - name: make sure data node folder exists
-      file:
-        path: /home/ubuntu/hadoop_store/hdfs/datanode2
-        state: directory
-        mode: 0775
-        recurse: yes
-    - name: make sure we have the latest vagrant hadoop repo
-      git:
-        repo: 'https://github.com/ajferrario/vagrant-hadoop.git'
-        dest: /home/ubuntu
-    - name: update core-site.xml
-      copy:
-        src: /home/ubuntu/vagrant-hadoop/config/core-site.xml
-        dest: /usr/local/hadoop/etc/hadoop/core-site.xml
-    - name: update hdfs-site.xml
-      copy:
-        src: /home/ubuntu/vagrant-hadoop/config/hdfs-site.xml
-        dest: /usr/local/hadoop/etc/hadoop/hdfs-site.xml
-    - name: update mapred-site.xml
-      copy:
-        src: /home/ubuntu/vagrant-hadoop/config/mapred-site.xml
-        dest: /usr/local/hadoop/etc/hadoop/mapred-site.xml
-    - name: update yarn-site.xml
-      copy:
-        src: /home/ubuntu/vagrant-hadoop/config/yarn-site.xml
-        dest: /usr/local/hadoop/etc/hadoop/yarn-site.xml
+  - name: make sure data node folder exists
+    file:
+      path: /home/ubuntu/hadoop_store/hdfs/datanode2
+      state: directory
+      mode: 0775
+      recurse: yes
+...

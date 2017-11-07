@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: format the hdfs cluster
+      command: hdfs namenode -format
+      args:
+        chdir: /usr/local/hadoop/hadoop-2.8.2/bin
+    - name: start name node
+      command: start-dfs.sh
+      args:
+        chdir: /usr/local/hadoop/hadoop-2.8.2/bin
+    - name: start yarn
+      command: start-yarn.sh
+      args:
+        chdir: /usr/local/hadoop/hadoop-2.8.2/bin
+...
