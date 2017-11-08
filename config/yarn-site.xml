@@ -1,15 +1,15 @@
 <configuration>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>192.168.33.10:8025</value>
+    <value>master:8031</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>192.168.33.10:8030</value>
+    <value>master:8030</value>
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>192.168.33.10:8050</value>
+    <value>master:8032</value>
   </property>
   <property>
     <name>yarn.nodemanager.aux-services</name>
@@ -20,7 +20,7 @@
     <value>org.apache.hadoop.mapred.ShuffleHandler</value>
   </property>
   <property>
-    <name>yarn.nodemanager.disk-health-checker.min-healthy-disks</name>
-    <value>0</value>
+    <name>yarn.nodemanager.address</name>
+    <value>0.0.0.0:59392</value>
   </property>
 </configuration>

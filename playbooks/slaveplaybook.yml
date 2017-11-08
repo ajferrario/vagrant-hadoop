@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: update hdfs-site.xml
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/slave/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+...

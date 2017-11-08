@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: update slaves file
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/slaves /usr/local/hadoop/etc/hadoop/slaves
+    - name: update masters file
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/masters /usr/local/hadoop/etc/hadoop/masters
+    - name: update hdfs-site.xml
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/master/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+    - name: format the hdfs cluster
+      command: hdfs namenode -format
+      args:
+        chdir: /usr/local/hadoop/hadoop-2.8.2/bin
+    - name: start name node
+      command: start-dfs.sh
+      args:
+        chdir: /usr/local/hadoop/hadoop-2.8.2/bin
+    - name: start yarn
+      command: start-yarn.sh
+      args:
+        chdir: /usr/local/hadoop/hadoop-2.8.2/bin
+...

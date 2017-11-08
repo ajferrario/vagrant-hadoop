@@ -2,9 +2,18 @@
 - hosts: all
   become: yes
   tasks:
-  - name: make sure name node folder exists
-    file:
-      path: /home/ubuntu/hadoop_store/hdfs/namenode2
-      state: directory
-      recurse: yes
+      - name: update hdfs-site.xml
+        command: mv -f /home/ubuntu/vagrant-hadoop/config/secondary/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+      - name: create fsimage directory
+        file:
+          path: /hdfs_storage/snnfsi
+          state: directory
+          owner: hduser
+          recurse: yes
+      - name: create fs edits directory
+        file:
+          path: /hdfs_storage/snnedits
+          state: directory
+          owner: hduser
+          recurse: yes
 ...

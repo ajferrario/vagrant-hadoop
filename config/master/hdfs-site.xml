@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <!--
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,11 +18,19 @@
 
 <configuration>
   <property>
-    <name>mapred.job.tracker</name>
-    <value>master:9001</value>
+    <name>dfs.replication</name>
+    <value>3</value>
   </property>
   <property>
-    <name>mapreduce.framework.name</name>
-    <value>yarn</value>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///hdfs_storage/data</value>
+  </property>
+  <property>
+    <name>dfs.secondary.http.address</name>
+    <value>slave1:50090</value>
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///hdfs_storage/name</value>
   </property>
 </configuration>
