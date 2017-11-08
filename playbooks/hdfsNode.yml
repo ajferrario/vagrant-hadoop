@@ -65,7 +65,7 @@
         dest: /usr/local
         remote_src: yes
     - name: softlink to hadoop
-      command: ln -s /usr/local/hadoop-2.8.2 usr/local/hadoop
+      command: ln -s /usr/local/hadoop-2.8.2 /usr/local/hadoop
     - name: set owner of hadoop folder to hduser
       command: chown -R hduser:hadoop hadoop
     - name: set owner of real hadoop folder to hduser
