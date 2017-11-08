@@ -67,9 +67,9 @@
     - name: softlink to hadoop
       command: ln -s /usr/local/hadoop-2.8.2 /usr/local/hadoop
     - name: set owner of hadoop folder to hduser
-      command: chown -R hduser:hadoop hadoop
+      command: chown -R hduser:hadoop /usr/local/hadoop
     - name: set owner of real hadoop folder to hduser
-      command: chown -R hduser:hadoop hadoop-2.8.2
+      command: chown -R hduser:hadoop /usr/local/hadoop-2.8.2
     - name: create hdfs directory
       file:
         path: /hdfs_storage/data
@@ -88,10 +88,10 @@
       lineinfile:
         path: ~/.bashrc
         line: 'export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin'
-    - name: update our bashrc
-      command: source ~/.bashrc
+    #- name: update our bashrc
+    #  command: source ~/.bashrc
     - name: update hadoop-env.sh
-      command: mv -f /home/ubuntu/vagrant-hadoop/config/hadoop-env/sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+      command: mv -f /home/ubuntu/vagrant-hadoop/config/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh
     - name: update core-site.xml
       command: mv -f /home/ubuntu/vagrant-hadoop/config/core-site.xml /usr/local/hadoop/etc/hadoop/core-site.xml
     - name: update mapred-site.xml
