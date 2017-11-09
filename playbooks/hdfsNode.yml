@@ -54,6 +54,7 @@
         state: present
         createhome: yes
         generate_ssh_key: yes
+        password: 12Hadoop
     - name: create hduser
       user:
         name: hduser
